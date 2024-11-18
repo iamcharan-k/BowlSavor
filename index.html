@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="foodOrderingApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BowlSavor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+
+</head>
+<body ng-controller="MainController">
+<header>
+    <h1>Restaurant Menu</h1>
+</header>
+<section>
+    <h2>Menu</h2>
+    <div class="menu-item" ng-repeat="item in menu">
+        <img ng-src="image/{{item.image}}" alt="{{item.name}}">
+        <h3>{{item.name}}</h3>
+        <p>{{item.price | currency}}</p>
+        <button ng-click="addToOrder(item)">Add to Order</button>
+    </div>
+</section>
+<section>
+    <h2>Your Order</h2>
+    <ul>
+        <li ng-repeat="item in order">
+            <span>{{item.name}}</span>
+            <span>{{item.price | currency}}</span>
+            <button ng-click="removeFromOrder(item)">Remove</button>
+        </li>
+    </ul>
+    <p>Total: {{calculateTotal() | currency}}</p>
+    <button ng-click="placeOrder()">Place Order</button>
+</section>
+</body>
+</html>
+
